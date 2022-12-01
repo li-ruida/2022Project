@@ -42,11 +42,11 @@
 [高级搜索](https://github.com/search/advanced)
 
 ## 五人分工
-+ 爬虫 requests,bs4,re
-+ 前端 jinja2
-+ 后端 python3,flask
-+ 测试 pytest
-+ 数据处理 matplotlib,re
++ 爬虫lrd requests,bs4,re
++ 前端zcw jinja2,js  
++ 后端wqc python3,flask
++ 测试zxt pytest
++ 数据处理bdy matplotlib,re
 
 ## 可选题目
 1.	Github项目流行程度分析与可视化
