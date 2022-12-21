@@ -3,6 +3,8 @@ def removeTheComma(str):#去除逗号
     for tmpchar in str:
         if tmpchar != ',':
             ans+=tmpchar
+    if ans[-1]=='+':
+        ans=ans[0:-1]
     return ans
 
 def removek(str):#去除k
@@ -14,3 +16,4 @@ def removek(str):#去除k
     ans=int(ans)
     return ans
 
+print(removeTheComma('5,000+'))

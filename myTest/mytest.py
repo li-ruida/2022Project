@@ -1,7 +1,9 @@
 import re
-import requests
+import requests,bs4
 
-li='public-apis/public-apis'
+from utils import func
+
+li='ohmyzsh/ohmyzsh'
 
 
 now_link1='https://github.com/'+li
@@ -24,6 +26,8 @@ license=re.findall(fr'''    <path fill-rule="evenodd" d="M8.75.75a.75.75 0 00-1.
 </svg>
      (.*?)
     </a>''',res.text)
+if len(license) == 0:
+      license = ("Null",)
 language=re.findall(fr'''</path>
 </svg>
           <span class="color-fg-default text-bold mr-1">(.*?)</span>
@@ -45,9 +49,26 @@ res=requests.get(now_link2)
 res.encoding="utf-8"
 # dom = bs4.BeautifulSoup(res.text, features="html.parser")
 # print(dom.prettify())
-issues_open=re.findall(fr'''      (.*?) Open(.*?)''', res.text)
+issues_open = re.findall(fr'''      (.*?) Open(.*?)''', res.text)
 issues_closed=re.findall(fr'''      (.*?) Closed(.*?)''', res.text)
-now_project='public-apis/public-apis'
+
+
+
+try:
+      issues_openans=int(func.removeTheComma(str(issues_open[-1][0])))
+except ValueError:
+      issues_openans=int(func.removeTheComma(str(issues_open[0][0])))
+print(issues_openans)
+
+
+
+
+
+
+
+
+
+now_project='ohmyzsh/ohmyzsh'
 author=''
 for tmpchar in now_project:
       if tmpchar=='/':
@@ -90,6 +111,6 @@ print('\n')
 returnstr = ' stars:' + str(stars[0][0]) + '\n fork:' + str(fork[0][0]) + '\n watch:' + str(
       watch[0]) + '\n contributors:' + str(contributors[0][0]) + '\n commits:' + str(commits[0]) + '\n license:' + str(
       license[0]) + '\n language:' + str(language) + '\n description:' + str(description[0]) + '\n date:' + str(
-      date[0][0]) + '\n issues_open:' + str(issues_open[0][0]) + ' issues_closed:' + str(
+      date[0][0]) + '\n issues_open:' + str(issues_open[-1][0]) + ' issues_closed:' + str(
       issues_closed[0][0]) + '\n author:' + author + '\n followers:' + str(followers[0])
 print(returnstr)
