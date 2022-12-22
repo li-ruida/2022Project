@@ -35,7 +35,6 @@
 + 作者关注数(的影响)
 + 作者仓库数
 + 贡献者
-## 每日趋势分析
 
 ## 链接
 [github每日趋势](https://github.com/trending)  

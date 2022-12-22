@@ -62,6 +62,8 @@ def searchAdvanced(linkstr):
      (.*?)
     </a>''', res.text)
         #todo:处理空值
+        if len(license)==0:
+            license=("No license",)
         language = re.findall(fr'''</path>
 </svg>
           <span class="color-fg-default text-bold mr-1">(.*?)</span>
@@ -79,7 +81,15 @@ def searchAdvanced(linkstr):
         res = requests.get(now_link2)
         res.encoding = "utf-8"
         issues_open = re.findall(fr'''      (.*?) Open(.*?)''', res.text)
+        try:
+            issues_openans = int(func.removeTheComma(str(issues_open[-1][0])))
+        except ValueError:
+            issues_openans = int(func.removeTheComma(str(issues_open[0][0])))
+        print(issues_openans)
         issues_closed = re.findall(fr'''      (.*?) Closed(.*?)''', res.text)
+        if len(issues_open)==0 and len(issues_closed)==0:
+            issues_open=(0,)
+            issues_closed=(0,)
         author = ''
         for tmpchar in now_project:
             if tmpchar == '/':
@@ -98,12 +108,12 @@ def searchAdvanced(linkstr):
             watch[0]) + '\n contributors:' + str(contributors[0][0]) +
               '\n commits:' + str(commits[0]) + '\n license:' + str(license[0]) + '\n language:' + str(
             language) + '\n description:' + str(description[0]) +
-              '\n date:' + str(date[0][0]) + '\n issues_open:' + str(issues_open[0][0]) + ' issues_closed:' + str(
+              '\n date:' + str(date[0][0]) + '\n issues_open:' + str(issues_openans) + ' issues_closed:' + str(
             issues_closed[0][0]) + '\n author:' + author + '\n followers:' + str(followersans)
               )
         tmpProject=Project(int(stars[0][0]),int(func.removeTheComma(str(fork[0][0]))),
                            int(func.removeTheComma(str(commits[0]))),int(func.removek(str(watch[0]))),
-                           int(func.removeTheComma(str(contributors[0][0]))),int(func.removeTheComma(str(issues_open[0][0]))),
+                           int(func.removeTheComma(str(contributors[0][0]))),issues_openans,
                            int(func.removeTheComma(str(issues_closed[0][0]))),int(func.removek(str(followersans))),
                             str(now_project),str(author),str(language),str(license[0]),str(date[0][0]),str(description[0])    )
 
