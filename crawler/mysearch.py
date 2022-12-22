@@ -63,7 +63,7 @@ def searchAdvanced(linkstr):
     </a>''', res.text)
         #todo:处理空值
         if len(license)==0:
-            license=("Null",)
+            license=("No license",)
         language = re.findall(fr'''</path>
 </svg>
           <span class="color-fg-default text-bold mr-1">(.*?)</span>
