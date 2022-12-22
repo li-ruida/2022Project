@@ -2,6 +2,7 @@ import flask
 from flask import Flask
 from flask import request
 from crawler import mysearch
+from utils.drawpic import drawpic
 
 app = Flask(__name__)
 
@@ -37,11 +38,12 @@ def search():  # put application's code here
         linkstr=linkstr[0:-1]
     print(linkstr)
     tmp1= mysearch.searchAdvanced(linkstr)
+    drawpic(tmp1)
     print(len(tmp1))
     print('####')
     for ii in tmp1:
         ii.__repr__()
-    return linkstr
+    return flask.render_template("show.html")
 if __name__ == '__main__':
 
     app.run()

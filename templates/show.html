@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Answer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body>
+    <div class="rightcolumn">
+            <div class="updatebd">
+                <p>Github热门项目协议直方图</p>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='licensebar.png') }}" width="1200" height="800" alt="饼图1">
+                </div>
+<p>Github热门项目协议饼图</p>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='licensepie.png') }}" width="1200" height="800" alt="饼图1">
+                </div>
+                <p>Github热门贡献者人数饼图</p>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='contributorspie.png') }}" width="1200" height="800" alt="饼图1">
+                </div>
+                <p>Github热门项目Issues Open状态个数饼图</p>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='issuespie.png') }}" width="1200" height="800" alt="饼图1">
+                </div>
+                <p>Github热门项目Fork数饼图</p>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='myforkpie.png') }}" width="1200" height="800" alt="饼图1">
+                </div>
+                <p>Github热门项目Followers数饼图</p>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='myfollowerspie.png') }}" width="1200" height="800" alt="饼图1">
+                </div>
+
+            </div>
+        </div>
+</body>
+
+</html>
